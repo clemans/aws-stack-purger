@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
 
 function getStackNames() {
-  read -p "Delete CF Stack ...  [a]ngular, ap[i], [c]loudFormation, [e]cs, [s]am-[m]ulti-lambda, [w]eb, Everythin[g] (Default: [g]):  " prompter
+  read -p "Delete CF Stack ...  [a]ngular, ap[i], [c]dk, cloud[f]ormation, [e]cs, [s]am-[m]ulti-lambda, [w]eb, Everythin[g] (Default: [g]):  " prompter
   if [[ -z ${prompter} ]]; then
     prompter=G
   fi
   case $prompter in
     a | A) echo "angular";;
-    c | C) echo "cloudformation";;
+    c | C) echo "cdk";;
     e | E) echo "ecs";;
+    f | F) echo "cloudformation";;
     i | I) echo "api";;
     m | M) echo "sam-multi-lambda";;
     s | S) echo "sam";;
-    g | G) echo "angular api cloudformation ecs sam sam-multi-lambda web";;
+    g | G) echo "angular api cdk cloudformation ecs sam sam-multi-lambda web";;
     *) echo -e "your selection is Invalid. Please try again."; getStackNames;;
   esac
 }
