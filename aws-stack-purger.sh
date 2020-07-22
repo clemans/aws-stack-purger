@@ -64,7 +64,12 @@ function ExecuteScript { args: integer featureNumber , string stackNames } {
 
   #Execution of CloudFormation Stack & S3 Bucket Deletion
   for stack in ${stackNames[*]}; do
-    stackName="dev-iad-test-$stack-feature-devops-$featureNumber";
+    case $stack in
+      "cdk")
+        stackName="dev-iad-devops-pipeline-test-$stack-feature-devops-$featureNumber";;
+      *)
+        stackName="dev-iad-test-$stack-feature-devops-$featureNumber";;
+    esac
     deleteS3BucketObjects
     deleteS3Bucket
     deleteCFStack
