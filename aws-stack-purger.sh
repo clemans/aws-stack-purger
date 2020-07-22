@@ -35,10 +35,8 @@ function ExecuteScript { args: integer featureNumber , string stackNames } {
       case $stack in
         "angular")
               buckets=$(getAngularBuckets);;
-         "web")
+         *)
               buckets=$stackName;;
-        *)
-              buckets='';;
       esac
       for bucket in $buckets; do
         aws s3 rm s3://$bucket/ --recursive
